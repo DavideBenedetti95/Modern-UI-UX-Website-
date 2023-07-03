@@ -22,7 +22,7 @@ const Stats = () => {
   }, [controls, inView])
 
   return (
-    <motion.section ref={ref} animate={controls} variants={opacityVariants} initial='hidden' className={`${styles.flexCenter} flex-row flex-wrap sm:mb-20 mb-6`}>
+    <motion.section ref={ref} animate={controls} variants={opacityVariants} initial='hidden' className={`${styles.flexCenter} flex-row flex-wrap sm:mb-32 mb-6`}>
       {stats.map((e)=>(
         <div key={e.id} className={`flex justify-start items-center flex-row ml-3`}>
           <h4 className='font-poppins font-semibold xs:text-[40px] text-[30px] xs:leading-[50px] leading-[40px] text-white'>{e.value}</h4>
