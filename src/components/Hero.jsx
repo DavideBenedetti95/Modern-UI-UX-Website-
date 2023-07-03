@@ -8,8 +8,8 @@ import { useInView } from "react-intersection-observer";
 const Hero = () => {
   
   const entryVariants = {
-    visible: { x: 0, transition: { duration: 1 } },
-    hidden: { x: -200}
+    visible: { opacity: 1, transition: { duration: 2} },
+    hidden: { opacity: 0}
   }
 
   const controls = useAnimation();
@@ -21,6 +21,11 @@ const Hero = () => {
     }
   }, [controls, inView])
 
+  useEffect(() => {
+    console.log("inView:", inView);
+  }, [inView]);
+  
+
 
   return (
     <section
@@ -29,7 +34,7 @@ const Hero = () => {
     >
       {/* Left Section */}
       <div
-        className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6 `}
+        className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6 mb-[120px]`}
       >
 
         {/* Discount Section */}
@@ -41,7 +46,7 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        <motion.div initial={{x:-1000}} animate={{x: 0}} transition={{delay:0.8, duration: 1}} className="flex flex-row justify-between items-center w-full">
+        <motion.div initial={{x:-1000}} animate={{x: 0}} transition={{delay:0.8, duration: 1}} className="flex flex-row justify-between items-center w-full mt-10">
           <h1 className="flex-1 font-poppins font-bold ss:text-[72px] text-[52px] text-white ss:leading-[100px] leading-[75px]">
             The Next <br className="sm:block hidden" />{" "}
             <span className="text-gradient">Generation</span>{" "}
