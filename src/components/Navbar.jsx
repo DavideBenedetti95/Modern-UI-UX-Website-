@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import {close, logo, menu} from '../assets'
 import {navLinks} from '../constants'
+import { motion } from 'framer-motion';
+
 
 const Navbar = () => {
 
@@ -12,7 +14,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='w-full flex py-6 justify-between items-center navbar'>
+    <motion.nav initial={{y:-100}} animate={{y:0}} transition={{ duration: 0.5, ease: "easeOut" , delay: 0.5}}
+    className='w-full flex py-6 justify-between items-center navbar'>
       <img src={logo} alt="logo" className='w-[124px] h-[32px]'/>
       
       {/* Desktop Navbar */}
@@ -41,7 +44,7 @@ const Navbar = () => {
         </ul>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 
