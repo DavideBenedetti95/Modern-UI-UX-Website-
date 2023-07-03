@@ -1,10 +1,27 @@
-import React from "react";
+import React , { useEffect } from "react";
 import styles from "../style";
 import { discount, robot } from "../assets";
 import GetStarted from "./GetStarted";
-import { motion } from 'framer-motion';
+import {useAnimation, motion } from 'framer-motion';
+import { useInView } from "react-intersection-observer";
 
 const Hero = () => {
+  
+  const entryVariants = {
+    visible: { x: 0, transition: { duration: 1 } },
+    hidden: { x: -200}
+  }
+
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(()=>{
+    if(inView){
+      controls.start("visible")
+    }
+  }, [controls, inView])
+
+
   return (
     <section
       id="home"
@@ -30,9 +47,9 @@ const Hero = () => {
             <span className="text-gradient">Generation</span>{" "}
           </h1>
 
-          <div className="ss:flex hidden md:mr-4 mr-0">
+          <motion.div initial={{y:-1000}} animate={{y: 0}} transition={{delay:1.5, duration: 1}} className="ss:flex hidden md:mr-4 mr-0">
             <GetStarted></GetStarted>
-          </div>
+          </motion.div>
 
         </motion.div>
 
@@ -63,9 +80,9 @@ const Hero = () => {
       {/* End Robot Image */}
 
       {/* Get Started Components for mobile */}
-      <div className={`ss:hidden ${styles.flexCenter}`}>
+      <motion.div ref={ref} animate={controls} variants={entryVariants} initial='hidden' className={`ss:hidden ${styles.flexCenter}`}>
         <GetStarted></GetStarted>
-      </div>
+      </motion.div>
       {/* End Get Started Components for Mobile */}
 
     </section>
