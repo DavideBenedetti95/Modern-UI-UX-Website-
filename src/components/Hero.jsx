@@ -8,8 +8,8 @@ import { useInView } from "react-intersection-observer";
 const Hero = () => {
   
   const entryVariants = {
-    visible: { opacity: 1, transition: { duration: 2} },
-    hidden: { opacity: 0}
+    visible: { x: 0, transition: { duration: 2} },
+    hidden: { x: -200}
   }
 
   const controls = useAnimation();
@@ -21,9 +21,9 @@ const Hero = () => {
     }
   }, [controls, inView])
 
-  useEffect(() => {
-    console.log("inView:", inView);
-  }, [inView]);
+  // useEffect(() => {
+  //   console.log("inView:", inView);
+  // }, [inView]);
   
 
 
